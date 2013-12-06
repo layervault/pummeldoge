@@ -1,28 +1,35 @@
-== README
+== Pummeldoge
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+An example Rails app that uses the [LayerVault API](https://developers.layervault.com).
 
-Things you may want to cover:
+What does it do? It makes sweet GIFs and MOVs of your work, like so:
 
-* Ruby version
+![](https://f.cloud.github.com/assets/47004/1696657/1fb2ed20-5ec8-11e3-9487-5a2c28d1b427.gif)
 
-* System dependencies
+## Installation
 
-* Configuration
+pummeldoge is a Rails 4 application. You will need [gifsicle](http://www.lcdf.org/gifsicle/), 
+[ffmpeg](https://trac.ffmpeg.org/wiki/MacOSXCompilationGuide), 
+and [imagemagick](http://stackoverflow.com/questions/7053996/how-do-i-install-imagemagick-with-homebrew) installed.
 
-* Database creation
+You will also need to register a LayerVault application. You can do that from your [LayerVault Development](https://layervault.com/settings/development) page. 
+(Account required. Accounts are free.)
 
-* Database initialization
+Next, define your API keys in your shell:
 
-* How to run the test suite
+```
+export LAYERVAULT_CLIENT_ID=MY_LAYERVAULT_CLIENT_ID_FROM_THE_SITE
+export LAYERVAULT_CLIENT_SECRET=MY_LAYERVAULT_SECRET_FROM_THE_SITE
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Then:
 
-* Deployment instructions
+```
+git clone git@github.com:layervault/pummeldoge.git
+cd pummeldoge
+bundle
+bundle exec rails s
+open http://localhost:3000
+```
 
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Hot doge!

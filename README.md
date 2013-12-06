@@ -1,4 +1,4 @@
-== Pummeldoge
+# Pummeldoge
 
 An example Rails app that uses the [LayerVault API](https://developers.layervault.com).
 

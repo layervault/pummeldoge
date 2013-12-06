@@ -16,6 +16,17 @@
 
 <ul>
   <% @projects.each do |project| %>
-    <li><%= project.name %>
+    <%= content_tag(:li, {
+      data: {
+        organization_permalink: project.organization_permalink,
+        project_name: project.name
+      }
+    }) { "#{project.organization_name} / #{project.name}" } %>
   <% end %>
 </ul>
+
+<script>
+  $(function () {
+    new FormFiller();
+  });
+</script>

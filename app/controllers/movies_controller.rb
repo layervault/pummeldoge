@@ -1,4 +1,6 @@
 class MoviesController < ApplicationController
+  before_filter :set_movie
+
   def create
     @movie = Movie.new(movie_params)
 
@@ -9,9 +11,16 @@ class MoviesController < ApplicationController
     end
   end
 
+  def show
+  end
+
   private
 
   def movie_params
     params.require(:movie).permit(:organization_permalink, :project_name, :folder_path, :file_name)
+  end
+
+  def set_movie
+    @movie = Movie.find params[:id]
   end
 end

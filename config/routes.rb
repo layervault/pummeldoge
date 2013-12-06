@@ -3,4 +3,8 @@ Pummeldoge::Application.routes.draw do
     get '/:provider/callback', action: 'create'
     get 'destroy'
   end
+
+  resources :movies, only: :create
+
+  root 'home#index'
 end

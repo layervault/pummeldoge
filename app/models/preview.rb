@@ -6,20 +6,21 @@ class Preview < ActiveRecord::Base
 
   after_commit :download_if_url_changed
 
+  scope :undownloaded,  -> { where(preview_data_file_name: nil) }
+  scope :downloaded,    -> { where('preview_data_file_name is not null') }
+  scope :needs_movie,   -> { where(movie_data_file_name: nil) }
+  scope :needs_gif,     -> { where(gif_data_file_name: nil) }
+
   def download!
-    PreviewDownloadService.new(self).download!
-    convert_to_gif!
-    convert_to_movie!
+    PreviewDownloadWorker.perform_async(id)
   end
 
   def convert_to_gif!
     PreviewGifService.new(self).convert!
-    movie.build_movie! if movie.can_build?
   end
 
   def convert_to_movie!
     PreviewMovieService.new(self).convert!
-    movie.build_movie! if movie.can_build?
   end
 
   private

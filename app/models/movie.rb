@@ -19,18 +19,8 @@ class Movie < ActiveRecord::Base
     movie
   end
 
-  def gather_and_build!
-    PreviewGatheringService.new(user).thumbs(organization_permalink, project_name).each do |thumb|
-      self.previews.build(url: thumb)
-    end
-
-    save!
-  end
-
   def build_movie!
     MovieBuildService.new(self).build!
-    make_h264!
-    make_gif!
   end
 
   def make_h264!

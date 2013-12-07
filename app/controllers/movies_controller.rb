@@ -18,10 +18,11 @@ class MoviesController < ApplicationController
   end
 
   def build
-    @movie.gather_and_build!
+    PreviewGatheringWorker.perform_async(@movie.id)
 
+    flash[:notice] = "Scheduled a build for your movie"
     respond_to do |format|
-      format.html { render text: 'OK'}
+      format.html { redirect_to movie_path(@movie) }
     end
   end
 

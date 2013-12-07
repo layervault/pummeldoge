@@ -1,0 +1,10 @@
+---
+production:
+  :queues:
+    - [pummeldoge_production, 1]
+staging:
+  :queues:
+    - [pummeldoge_staging, 1]
+development:
+  :queues:
+    - [pummeldoge_development, 1]

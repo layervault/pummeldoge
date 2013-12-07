@@ -1,4 +1,9 @@
 class MovieGifService < MovieBaseService
+
+  def can_make?
+    preview_gif_paths.select(&:nil?).empty?
+  end
+
   def make!
     gif_tempfile = Tempfile.new([SecureRandom.hex, '.gif'], encoding: 'ascii-8bit')
 

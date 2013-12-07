@@ -7,7 +7,7 @@ class PreviewGifService < PreviewBaseService
   def convert!
     gif_tempfile = Tempfile.new([SecureRandom.hex, '.gif'], encoding: 'ascii-8bit')
 
-    command = "convert #{@preview.preview_data.path} -resize 800x600^ -gravity center -extent 800x600 #{gif_tempfile.path}"
+    command = "convert #{@preview.preview_data.path} -resize 800x600^ -gravity north -extent 800x600 #{gif_tempfile.path}"
 
     logger.info command
     `#{command}`

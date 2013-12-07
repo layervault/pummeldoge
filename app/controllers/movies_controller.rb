@@ -1,6 +1,7 @@
 class MoviesController < ApplicationController
   before_filter :set_movie, only: [:show, :build]
   before_filter :require_user
+  before_filter :require_user_owns_movie, only: [:show, :build]
 
   def create
     @movie = current_user.movies.build(movie_params)
@@ -35,5 +36,11 @@ class MoviesController < ApplicationController
   def set_movie
     @movie = Movie.find params[:id] if params[:id]
     @movie ||= Movie.find params[:movie_id]
+  end
+
+  def require_user_owns_movie
+    unless @movie.user == current_user
+      render status: :forbidden and return
+    end
   end
 end

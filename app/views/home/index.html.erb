@@ -1,21 +1,7 @@
 <% unless current_user %>
   <p><%= link_to 'Log in with LayerVault', '/auth/layervault' %></p>
 <% else %>
-  <%= form_for @movie do |f| %>
-    <%= f.label :organization_permalink %>
-    <%= f.text_field :organization_permalink %><br />
-
-    <%= f.label :project_name %>
-    <%= f.text_field :project_name %><br />
-
-    <%= f.label :folder_path %>
-    <%= f.text_field :folder_path %><br />
-
-    <%= f.label :file_name %>
-    <%= f.text_field :file_name %><br />
-
-    <%= f.submit %>
-  <% end %>
+  <%= render 'movies/form' %>
 
   <ul>
     <% @projects.each do |project| %>

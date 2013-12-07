@@ -3,9 +3,9 @@ class Movie < ActiveRecord::Base
   has_many :previews
   has_attached_file :movie_data
   has_attached_file :h264
-  has_attached_file :gif
+  has_attached_file :gif, styles: { one_x: "400x300", one_half_x: "200x150" }
 
-  FRAME_RATE = 6
+  FRAME_RATE = 3
   WIDTH = 800
   HEIGHT = 600
 

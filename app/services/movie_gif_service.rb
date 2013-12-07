@@ -9,7 +9,7 @@ class MovieGifService < MovieBaseService
 
     command = "#{Gifsicle.path}"
     command << " --optimize=3"
-    command << " --delay=13"
+    command << " --delay=#{100/Movie::FRAME_RATE}"
     command << " --loop"
     command << " #{preview_gif_paths.join(' ')}"
     command << " > #{gif_tempfile.path}"

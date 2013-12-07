@@ -42,3 +42,17 @@ most folks likely have multi-core processors these days. If we're doing a lot of
 the Rails-default SQLite3 has terrible write performance. To fix that, we use postgres by default.
 
 *You will need to change your username in `config/database.yml`* to take advantage of postgres.
+
+## API Notes
+
+This example application is a good demonstration of top-to-bottom use of the [LayerVault API](https://developers.layervault.com).
+
+To authenticate users, we use the [omniauth-layervault](https://github.com/layervault/omniauth-layervault) gem. You can
+see how we create a `User` object from the response in
+[app/controllers/auth_controller.rb](https://github.com/layervault/pummeldoge/blob/master/app/controllers/auth_controller.rb) and [app/models/user.rb](https://github.com/layervault/pummeldoge/blob/master/app/models/user.rb).
+
+To actually get data out of LayerVault, we use the [layervault](https://github.com/layervault/layervault_ruby_client) gem.
+You can see that in action in the [PreviewGatheringService](https://github.com/layervault/pummeldoge/blob/master/app/services/preview_gathering_service.rb).
+
+Once we have URLs to all of the previews we need, it's just a matter of pulling them down and mushing
+them into GIFs and MOVs.

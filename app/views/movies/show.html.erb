@@ -2,22 +2,38 @@
 
 <%= @movie.id %>
 
+<h2>Status</h2>
+
 <% if @movie.previews.nil? %>
   <p>This movie does not have any previews yet.</p>
+<% else %>
+  <p>Previews: <%= @movie.previews.size %></p>
+
+  <p>Previews needing download: <%= @movie.previews.undownloaded.size %></p>
+
+  <p>Previews needing GIFing: <%= @movie.previews.needs_gif.size %></p>
+
+  <p>Previews needing MOVing: <%= @movie.previews.needs_movie.size %></p>
 <% end %>
 
 <% if !@movie.movie_data.exists? && (@movie.can_build? || @movie.previews.empty?) %>
   <p>Create movie</p>
   <%= form_for @movie, url: movie_build_path(@movie) do |f| %>
-    <%= f.submit 'Create' %>
+    <%= f.submit 'Build GIF and MOV' %>
   <% end %>
 <% end %>
 
+<h2>Results</h2>
+
 <% if @movie.gif.exists? %>
   <p><%= image_tag @movie.gif.url, style: "width: 400px; height: 300px;" %></p>
+<% else %>
+  <p>GIF has not been built yet</p>
 <% end %>
 
 <% if @movie.h264.exists? %>
   <p><%= link_to 'Download Movie', @movie.h264.url %></p>
+<% else %>
+  <p>Movie has not been built yet.</p>
 <% end %>
 

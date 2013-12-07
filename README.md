@@ -41,4 +41,4 @@ That might seem a little heavy for a demo app. This is done to cut down on proce
 most folks likely have multi-core processors these days. If we're doing a lot of work at the same time,
 the Rails-default SQLite3 has terrible write performance. To fix that, we use postgres by default.
 
-*You will need to change your username in `db/database.yml`* to take advantage of postgres.
+*You will need to change your username in `config/database.yml`* to take advantage of postgres.

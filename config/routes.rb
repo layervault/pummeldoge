@@ -4,7 +4,9 @@ Pummeldoge::Application.routes.draw do
     get 'destroy'
   end
 
-  resources :movies, only: [:create, :show]
+  resources :movies, only: [:create, :show] do
+    patch :build
+  end
 
   root 'home#index'
 end

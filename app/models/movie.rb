@@ -1,4 +1,5 @@
 class Movie < ActiveRecord::Base
+  belongs_to :user
   has_many :previews
   has_attached_file :movie_data
   has_attached_file :h264
@@ -16,6 +17,14 @@ class Movie < ActiveRecord::Base
     end
 
     movie
+  end
+
+  def gather_and_build!
+    PreviewGatheringService.new(user).thumbs(organization_permalink, project_name).each do |thumb|
+      self.previews.build(url: thumb)
+    end
+
+    save!
   end
 
   def build_movie!

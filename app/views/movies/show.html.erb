@@ -1,0 +1,23 @@
+<h1>Movie</h1>
+
+<%= @movie.id %>
+
+<% if @movie.previews.nil? %>
+  <p>This movie does not have any previews yet.</p>
+<% end %>
+
+<% if !@movie.movie_data.exists? && (@movie.can_build? || @movie.previews.empty?) %>
+  <p>Create movie</p>
+  <%= form_for @movie, url: movie_build_path(@movie) do |f| %>
+    <%= f.submit 'Create' %>
+  <% end %>
+<% end %>
+
+<% if @movie.gif.exists? %>
+  <p><%= image_tag @movie.gif.url, style: "width: 400px; height: 300px;" %></p>
+<% end %>
+
+<% if @movie.h264.exists? %>
+  <p><%= link_to 'Download Movie', @movie.h264.url %></p>
+<% end %>
+

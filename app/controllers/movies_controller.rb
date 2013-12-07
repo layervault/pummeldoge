@@ -1,17 +1,28 @@
 class MoviesController < ApplicationController
-  before_filter :set_movie
+  before_filter :set_movie, only: [:show, :build]
+  before_filter :require_user
 
   def create
-    @movie = Movie.new(movie_params)
+    @movie = current_user.movies.build(movie_params)
 
-    if @movie.save
-      format.html { render text: "OK" }
-    else
-      format.html { render text: "CRAP"}
+    respond_to do |format|
+      if @movie.save
+        format.html { redirect_to movie_path(@movie) }
+      else
+        format.html { render text: "CRAP"}
+      end
     end
   end
 
   def show
+  end
+
+  def build
+    @movie.gather_and_build!
+
+    respond_to do |format|
+      format.html { render text: 'OK'}
+    end
   end
 
   private
@@ -21,6 +32,7 @@ class MoviesController < ApplicationController
   end
 
   def set_movie
-    @movie = Movie.find params[:id]
+    @movie = Movie.find params[:id] if params[:id]
+    @movie ||= Movie.find params[:movie_id]
   end
 end

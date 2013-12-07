@@ -4,7 +4,9 @@ An example Rails app that uses the [LayerVault API](https://developers.layervaul
 
 What does it do? It makes sweet GIFs and MOVs of your work, like so:
 
-![](https://f.cloud.github.com/assets/47004/1696657/1fb2ed20-5ec8-11e3-9487-5a2c28d1b427.gif)
+![](https://f.cloud.github.com/assets/47004/1699314/0d639c28-5f90-11e3-8900-11aaccd064e8.gif)
+
+The above GIF was created from [this LayerVault public project](https://layervault.com/kelly-sutton/Pummeldoge).
 
 ## Installation
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131207175225) do
+ActiveRecord::Schema.define(version: 20131209234430) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20131207175225) do
     t.string   "folder_path"
     t.string   "file_name"
     t.integer  "user_id"
+    t.datetime "build_attempted_at"
   end
 
   add_index "movies", ["user_id"], name: "index_movies_on_user_id", using: :btree

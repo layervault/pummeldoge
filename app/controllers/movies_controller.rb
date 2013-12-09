@@ -5,9 +5,11 @@ class MoviesController < ApplicationController
 
   def create
     @movie = current_user.movies.build(movie_params)
+    @movie.build_attempted_at = Time.now
 
     respond_to do |format|
       if @movie.save
+        PreviewGatheringWorker.perform_async(@movie.id)
         format.html { redirect_to movie_path(@movie) }
       else
         format.html { render text: "CRAP"}

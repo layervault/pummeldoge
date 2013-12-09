@@ -4,6 +4,10 @@
 
 <h2>Status</h2>
 
+<% if @movie.build_attempted_at %>
+  <p>Started building the movie at <%= @movie.build_attempted_at %>. Refresh to see progress.</p>
+<% end %>
+
 <% if @movie.previews.empty? %>
   <p>This movie does not have any previews yet.</p>
 

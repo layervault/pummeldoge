@@ -9,8 +9,8 @@
     <% @projects.each do |project| %>
       <%= content_tag(:option, {
         data: {
-          organization_permalink: project.organization_permalink,
-          project_name: project.name
+          organization_permalink: project['organization_permalink'],
+          project_name: project['name']
         }
       }) { "#{project.organization_name} / #{project.name}" } %>
     <% end %>

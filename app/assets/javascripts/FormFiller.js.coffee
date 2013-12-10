@@ -1,12 +1,12 @@
 window.FormFiller = class FormFiller
   constructor: ->
-    @bindClicks()
+    @bindChange()
 
-  bindClicks: ->
-    $('body').on 'click', 'li', @onListItemClick
+  bindChange: ->
+    $('select').on 'change', @onListChange
 
-  onListItemClick: (target) =>
-    $target = $(event.target)
+  onListChange: (target) =>
+    $target = $(event.target).find('option:selected')
     $('form').find('#movie_organization_permalink').val($target.data('organization-permalink'))
     $('form').find('#movie_project_name').val($target.data('project-name'))
     true

@@ -1,0 +1,117 @@
+$blue: #2f79e7;
+$gray: #9ea7b1;
+$font_stack: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+body {
+  text-align: center;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  width: 500px;
+  margin: 0 auto;
+  padding: 50px 0;
+}
+
+a {
+  color: $blue;
+  text-decoration: none;
+}
+
+.Login {
+  margin: 100px 0;
+}
+
+h1 {
+  height: 42px;
+  line-height: 42px;
+  a {
+    color: black;
+  }
+  a:hover {
+    font-family: "Comic Sans MS", "Comic Sans", fantasy;
+    color: red;
+  }
+}
+
+label {
+  font-size: 14px;
+  display: block;
+  margin: 5px 0;
+}
+
+input[type=text] {
+  width: 300px;
+  padding: 8px 5px;
+  border-radius: 3px;
+  border: 1px solid $gray;
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+input[type=submit] {
+  font-size: 14px;
+  padding: 10px 15px;
+  border: 2px solid $blue;
+  border-radius: 3px;
+  background: white;
+  color: $blue;
+  font-weight: bold;
+  margin-top: 20px;
+  cursor: pointer;
+  &:hover {
+    border-color: lighten($blue, 2%);
+    color: lighten($blue, 2%);
+  }
+}
+
+select {
+  padding: 10px;
+  background: white;
+  border: 1px solid $gray;
+  font-size: 14px;
+  line-height: 30px;
+  margin: 10px 0;
+}
+
+input, select {
+  font-family: $font_stack;
+  margin-bottom: 20px;
+}
+
+p {
+  line-height: 1.5em;
+}
+
+p.Note {
+  font-size: 12px;
+  color: $gray;
+  margin: 100px 0;
+  a {
+    color: inherit;
+    text-decoration: underline;
+    &:hover {
+      color: $blue;
+    }
+  }
+}
+
+p.Status {
+  font-size: 12px;
+  color: $gray;
+}
+
+section {
+  margin: 50px 0;
+  padding-bottom: 50px;
+  border-bottom: 1px solid #ddd;
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+table {
+  width: 300px;
+  margin: 40px auto;
+  td {
+    text-align: left;
+    padding: 5px;
+  }
+}

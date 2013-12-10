@@ -1,18 +1,20 @@
 <% unless current_user %>
-  <p><%= link_to 'Log in with LayerVault', '/auth/layervault' %></p>
+  <p class="Login"><%= link_to 'Log in with LayerVault', '/auth/layervault' %></p>
 <% else %>
-  <%= render 'movies/form' %>
 
-  <ul>
+  <select>
+    <option>Select Project</option>
     <% @projects.each do |project| %>
-      <%= content_tag(:li, {
+      <%= content_tag(:option, {
         data: {
           organization_permalink: project.organization_permalink,
           project_name: project.name
         }
       }) { "#{project.organization_name} / #{project.name}" } %>
     <% end %>
-  </ul>
+  </select>
+
+  <%= render 'movies/form' %>
 
   <script>
     $(function () {
@@ -21,4 +23,4 @@
   </script>
 <% end %>
 
-<p>This is an example Rails application used to show off the <a href="https://developers.layervault.com/">LayerVault API</a>. You can view the source <a href="https://github.com/layervault/pummeldoge">on GitHub</a>.</p>
+<p class="Note">This is an example Rails application used to show off the <a href="https://developers.layervault.com/">LayerVault API</a>.<br/><br/>You can view the source <a href="https://github.com/layervault/pummeldoge">on GitHub</a>.</p>

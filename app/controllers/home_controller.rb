@@ -5,7 +5,7 @@ class HomeController < ApplicationController
       @client = LayerVault::Client.new({ access_token: current_user.access_token })
       @organizations = JSON.parse(@client.me)['organizations']
       @projects = @organizations.map do |org|
-        @client.organization(org['permalink'])['projects']
+        JSON.parse @client.organization(org['permalink'])['projects']
       end.flatten
     end
   end

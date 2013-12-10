@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  force_ssl
+  force_ssl if: :in_production
 
   helper_method :current_user_session, :current_user
 
@@ -28,5 +28,9 @@ class ApplicationController < ActionController::Base
       flash[:notice] = "You are not an admin."
       redirect_to current_user ? '/auth/layervault' : 'https://layervault.com'
     end
+  end
+
+  def in_production
+    Rails.env.production?
   end
 end

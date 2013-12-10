@@ -15,10 +15,9 @@
   <% if @movie.previews.empty? %>
     <p>This movie does not have any previews yet.</p>
 
-    <% if !@movie.movie_data.exists? && (@movie.can_build? || @movie.previews.empty?) %>
-      <p>Create movie</p>
+    <% if !@movie.movie_data.exists? && (@movie.can_build? || @movie.previews.empty?) && @movie.build_attempted_at + 15.seconds > Time.now %>
       <%= form_for @movie, url: movie_build_path(@movie) do |f| %>
-        <%= f.submit 'Build GIF and MOV' %>
+        <%= f.submit 'Retry Building GIF and MOV' %>
       <% end %>
     <% end %>
   <% else %>
@@ -47,6 +46,7 @@
 
   <% if @movie.gif.exists? %>
     <p><%= image_tag @movie.gif.url, style: "width: 400px; height: 300px;" %></p>
+    <p><%= link_to '800x600', @movie.gif.url %> <%= link_to '400x300', @movie.gif.url(:one_x) %> <%= link_to '200x150', @movie.gif.url(:one_half_x) %></p>
   <% else %>
     <p>GIF has not been built yet</p>
   <% end %>

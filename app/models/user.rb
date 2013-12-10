@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
 
   private
 
-  def oauth_attributes(auth_hash)
+  def self.oauth_attributes(auth_hash)
     {
       first_name: auth_hash.info.first_name,
       last_name: auth_hash.info.last_name,

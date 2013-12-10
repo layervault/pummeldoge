@@ -41,8 +41,6 @@ class MoviesController < ApplicationController
   end
 
   def require_user_owns_movie
-    unless @movie.user == current_user
-      render status: :forbidden and return
-    end
+    forbidden! unless @movie.user == current_user
   end
 end

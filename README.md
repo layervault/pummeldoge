@@ -14,6 +14,14 @@ pummeldoge is a Rails 4 application. You will need [gifsicle](http://www.lcdf.or
 [ffmpeg](https://trac.ffmpeg.org/wiki/MacOSXCompilationGuide),
 and [imagemagick](http://stackoverflow.com/questions/7053996/how-do-i-install-imagemagick-with-homebrew) installed.
 
+To install those in one swift go with Homebrew:
+
+```
+brew install ffmpeg
+brew install gifsicle
+brew install imagemagick
+```
+
 You will also need to register a LayerVault application. You can do that from your [LayerVault Development](https://layervault.com/settings/development) page.
 (Account required. Accounts are free.)
 

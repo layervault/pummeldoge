@@ -80,6 +80,12 @@ p {
   line-height: 1.5em;
 }
 
+p.Description {
+  font-size: 16px;
+  color: $gray;
+  margin: 0 0 40px;
+}
+
 p.Note {
   font-size: 12px;
   color: $gray;

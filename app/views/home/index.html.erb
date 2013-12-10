@@ -1,7 +1,9 @@
+<p class="Description">
+  Create GIFs and MOVs from your LayerVault Projects.
+</p>
 <% unless current_user %>
   <p class="Login"><%= link_to 'Log in with LayerVault', '/auth/layervault' %></p>
 <% else %>
-
   <select>
     <option>Select Project</option>
     <% @projects.each do |project| %>

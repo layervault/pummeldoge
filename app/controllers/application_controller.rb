@@ -6,6 +6,19 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user_session, :current_user
 
+  def forbidden!
+    raise Exceptions::ForbiddenError.new("Forbidden")
+  end
+
+  rescue_from Exceptions::ForbiddenError, with: :render_403
+
+  def render_403
+    respond_to do |format|
+      format.html { head :forbidden }
+      format.json { render json: {}, status: :forbidden }
+    end
+  end
+
   def current_user_session
     return @current_user_session if defined?(@current_user_session)
     @current_user_session = UserSession.find

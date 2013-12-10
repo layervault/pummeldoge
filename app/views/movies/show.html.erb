@@ -1,43 +1,60 @@
-<h1>Movie</h1>
+<section>
+  <h2>Movie</h2>
 
-<%= @movie.id %>
+  Id: <%= @movie.id %>
+</section>
 
-<h2>Status</h2>
+<section>
 
-<% if @movie.build_attempted_at %>
-  <p>Started building the movie at <%= @movie.build_attempted_at %>. Refresh to see progress.</p>
-<% end %>
+  <h3>Status</h3>
 
-<% if @movie.previews.empty? %>
-  <p>This movie does not have any previews yet.</p>
-
-  <% if !@movie.movie_data.exists? && (@movie.can_build? || @movie.previews.empty?) %>
-    <p>Create movie</p>
-    <%= form_for @movie, url: movie_build_path(@movie) do |f| %>
-      <%= f.submit 'Build GIF and MOV' %>
-    <% end %>
+  <% if @movie.build_attempted_at %>
+    <p class="Status">Started building the movie at <%= @movie.build_attempted_at %>. Refresh to see progress.</p>
   <% end %>
-<% else %>
-  <p>Previews: <%= @movie.previews.size %></p>
 
-  <p>Previews needing download: <%= @movie.previews.undownloaded.size %></p>
+  <% if @movie.previews.empty? %>
+    <p>This movie does not have any previews yet.</p>
 
-  <p>Previews needing GIFing: <%= @movie.previews.needs_gif.size %></p>
+    <% if !@movie.movie_data.exists? && (@movie.can_build? || @movie.previews.empty?) %>
+      <p>Create movie</p>
+      <%= form_for @movie, url: movie_build_path(@movie) do |f| %>
+        <%= f.submit 'Build GIF and MOV' %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <table>
+      <tr>
+        <td>Previews:</td>
+        <td><%= @movie.previews.size %></td>
+      </tr>
+      <tr>
+        <td>Previews needing download:</td>
+        <td><%= @movie.previews.undownloaded.size %></td>
+      </tr>
+      <tr>
+        <td>Previews needing GIFing:</td>
+        <td><%= @movie.previews.needs_gif.size %></td>
+      </tr>
+      <tr>
+        <td>Previews needing MOVing:</td>
+        <td><%= @movie.previews.needs_movie.size %></td>
+      </tr>
+    </table>
+  <% end %>
+</section>
+<section>
+  <h3>Results</h3>
 
-  <p>Previews needing MOVing: <%= @movie.previews.needs_movie.size %></p>
-<% end %>
+  <% if @movie.gif.exists? %>
+    <p><%= image_tag @movie.gif.url, style: "width: 400px; height: 300px;" %></p>
+  <% else %>
+    <p>GIF has not been built yet</p>
+  <% end %>
 
-<h2>Results</h2>
-
-<% if @movie.gif.exists? %>
-  <p><%= image_tag @movie.gif.url, style: "width: 400px; height: 300px;" %></p>
-<% else %>
-  <p>GIF has not been built yet</p>
-<% end %>
-
-<% if @movie.h264.exists? %>
-  <p><%= link_to 'Download Movie', @movie.h264.url %></p>
-<% else %>
-  <p>Movie has not been built yet.</p>
-<% end %>
+  <% if @movie.h264.exists? %>
+    <p><%= link_to 'Download Movie', @movie.h264.url %></p>
+  <% else %>
+    <p>Movie has not been built yet.</p>
+  <% end %>
+</section>
 

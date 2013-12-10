@@ -1,10 +1,8 @@
 development:
-  adapter: postgresql
-  encoding: unicode
-  database: pummeldoge_development
-  pool: 30
-  username: kelly
-  password:
+  adapter: sqlite3
+  database: db/development.sqlite3
+  pool: 5
+  timeout: 5000
 
 test:
   adapter: sqlite3

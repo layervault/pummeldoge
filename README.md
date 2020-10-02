@@ -10,7 +10,7 @@ The above GIF was created from [this LayerVault public project](https://layervau
 
 ## Installation
 
-pummeldoge is a Rails 4 application. You will need [gifsicle](http://www.lcdf.org/gifsicle/),
+Pummeldoge is a Rails 4 application. You will need [gifsicle](http://www.lcdf.org/gifsicle/),
 [ffmpeg](https://trac.ffmpeg.org/wiki/MacOSXCompilationGuide),
 and [imagemagick](http://stackoverflow.com/questions/7053996/how-do-i-install-imagemagick-with-homebrew) installed.
 
@@ -22,7 +22,7 @@ brew install gifsicle
 brew install imagemagick
 ```
 
-You will also need to register a LayerVault application. You can do that from your [LayerVault Development](https://layervault.com/settings/development) page.
+You will also need to register a LayerVault Application. You can do that from your [LayerVault Development](https://layervault.com/settings/development) page.
 (Account required. Accounts are free.)
 
 Next, define your API keys in your shell:
@@ -47,7 +47,7 @@ Hot doge!
 ## Notes
 
 This app uses [Sidekiq](https://github.com/mperham/sidekiq) and [postgres](http://www.postgresql.org/).
-That might seem a little heavy for a demo app. This is done to cut down on processing time,
+That might seem a little heavy for a Demo app. This is done to cut down on processing time,
 most folks likely have multi-core processors these days. If we're doing a lot of work at the same time,
 the Rails-default SQLite3 has terrible write performance. To fix that, we use postgres by default.
 
